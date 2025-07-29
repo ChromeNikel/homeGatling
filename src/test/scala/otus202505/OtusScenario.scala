@@ -26,6 +26,6 @@ class OtusScenario {
   }
   val scn = scenario("Scenario finding max")
     .feed(Feeders.users)
-    .exec("login")
-    .exec("byingTickets")
+    .exec(loginGroup)
+    .exec(byingTicketsGroup)
 }
