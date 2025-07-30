@@ -17,15 +17,16 @@ class OtusScenario {
   }
 
   val byingTicketsGroup: ChainBuilder = group("byingTickets") {
-    exec(ActionOtus.getMainPage)
-      .exec(ActionOtus.getFlights)
+    exec(exec(ActionOtus.getFlights)
       .exec(ActionOtus.postGoToFindFlights)
       .exec(ActionOtus.postToPaymentDetails)
       .exec(ActionOtus.postMakePayment)
       .exec(ActionOtus.getMainPage)
+    )
   }
   val scn = scenario("Scenario finding max")
     .feed(Feeders.users)
+    .pace(4)
     .exec(loginGroup)
     .exec(byingTicketsGroup)
 }
